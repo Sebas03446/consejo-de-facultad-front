@@ -25,7 +25,7 @@ class Login extends Component {
     login = (e) => {
         e.preventDefault();
         let self = this;
-        api.post('http://localhost:3001/api/auth/', self.state.login)
+        api.post('https://hammerhead-app-f4vnv.ondigitalocean.app/api/auth/', self.state.login)
             .then(function (response) {
                 //---set Authorization header ---
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
@@ -43,7 +43,7 @@ class Login extends Component {
         console.log(this.state.registration);
         e.preventDefault();
         let self = this;
-        api.post('http://localhost:3001/api/auth/new', self.state.registration)
+        api.post('https://hammerhead-app-f4vnv.ondigitalocean.app/api/auth/new', self.state.registration)
             .then(function (response) {
                 console.log('user registration success response :: ', response);
                 successMsg('User Registration Successful.');
