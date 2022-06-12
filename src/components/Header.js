@@ -17,6 +17,7 @@ const Header = () => (
                     <Link className="navbar-brand" to='/carousel'>Crear Solicitud</Link>
                 </div>
                 <div id="navbar" className="navbar-collapse collapse">
+                    
                     <ul className="nav navbar-nav">
                         <li ><Link to='/'>Home</Link></li>
                         {/* <li ><Link to='/create'>Create Story</Link></li> */}
