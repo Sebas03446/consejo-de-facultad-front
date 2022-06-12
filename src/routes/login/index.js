@@ -16,7 +16,8 @@ class Login extends Component {
             registration: {
                 email: '',
                 password: '',
-                name: ''
+                name: '',
+                academic_degree: '',
             },
             openDlgFlg: false
         }
@@ -64,6 +65,7 @@ class Login extends Component {
         registration.email = '';
         registration.password = '';
         registration.name = '';
+        registration.academic_degree = '';
         this.setState({registration});
     }
 
@@ -208,6 +210,31 @@ class Login extends Component {
                                                })}
                                                placeholder="name"
                                                required="true"/>
+                                    </div>
+                                </div>
+                                <div className="form-group">
+                                    <label className="col-sm-3 control-label">Programa Académico</label>
+
+                                    <div className="col-sm-8">
+                                        <select className="form-control" required="true"
+                                                value={registration.academic_degree}
+                                                onChange={(e) => this.setState({
+                                                    registration: {
+                                                        ...registration,
+                                                        academic_degree: e.target.value
+                                                    }
+                                                })}
+                                                name="academic_degree" id="academic_degree">
+                                            <option value='Ingeniería Agrícola'>Ingeniería Agrícola</option>
+                                            <option value='Ingeniería Civil'>Ingeniería Civil</option>
+                                            <option value='Ingeniería de Sistemas y Computación'>Ingeniería de Sistemas y Computación</option>
+                                            <option value='Ingeniería Electrónica'>Ingeniería Electrónica</option>
+                                            <option value='Ingeniería Industrial'>Ingeniería Industrial</option>
+                                            <option value='Ingeniería Eléctrica'>Ingeniería Eléctrica</option>
+                                            <option value='Ingeniería Mecatrónica'>Ingeniería Mecatrónica</option>
+                                            <option value='Ingeniería Química'>Ingeniería Química</option>
+                                            <option value='Ingeniería Mecánica'>Ingeniería Mecánica</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {errorMsg, successMsg} from '../../components/notification/ToastNotification';
 import api from '../../api'
 
-class Create extends Component {
+class Queries extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title : this.props.location.state ? this.props.location.state.object : '' ,
+            title : '',
             body  : '',
             author : '',
         }
@@ -29,7 +29,7 @@ class Create extends Component {
     };
 
     setEmptyState = () =>{
-        this.setState({title : this.props});
+        this.setState({title : ''});
         this.setState({body : ''});
         this.setState({author : ''});
     };
@@ -45,7 +45,7 @@ class Create extends Component {
                         <form className="form-horizontal" onSubmit={this.createStory}>
 
                             <div className="form-group">
-                                <label className="col-sm-2 control-label">Solicitud </label>
+                                <label className="col-sm-2 control-label">Title* </label>
 
                                 <div className="col-sm-4">
                                     <input type="text" className="form-control" id="title" name="title" placeholder="Title"
@@ -57,7 +57,7 @@ class Create extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label className="col-sm-2 control-label">Justificacion </label>
+                                <label className="col-sm-2 control-label">Body* </label>
                                 <div className="col-sm-4">
                                 <textarea rows="20" className="form-control" id="body" name="body"
                                           value={body}
@@ -68,7 +68,7 @@ class Create extends Component {
                                 </div>
                             </div>
 
-                            {/* <div className="form-group">
+                            <div className="form-group">
                                 <label className="col-sm-2 control-label">Author Name*</label>
 
                                 <div className="col-sm-4">
@@ -79,7 +79,7 @@ class Create extends Component {
                                            placeholder="Author Name"
                                            required="true"/>
                                 </div>
-                            </div> */}
+                            </div>
 
                             <div className="form-group">
                                 <div className="col-sm-offset-2 col-sm-10">
@@ -94,4 +94,4 @@ class Create extends Component {
     };
 }
 
-export default Create;
+export default Queries;
