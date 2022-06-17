@@ -110,7 +110,7 @@ class Login extends Component {
 
 
                         <div className="form-group">
-                            <label className="col-sm-3 control-label">Password</label>
+                            <label className="col-sm-3 control-label">Contraseña</label>
 
                             <div className="col-sm-8">
                                 <input type="password" className="form-control" id="password" name="password"
@@ -121,18 +121,18 @@ class Login extends Component {
                                                password: e.target.value
                                            }
                                        })}
-                                       placeholder="Password"
+                                       placeholder="Contraseña"
                                        required="true"/>
                             </div>
                         </div>
                         <div className="form-group">
                             <div className="col-sm-offset-5 col-sm-7">
-                                <button type="submit" className="btn btn-primary">Login</button>
+                                <button type="submit" className="btn btn-primary">Continuar</button>
                             </div>
                         </div>
                     </form>
                     <div className="form-group req-link">
-                        <a href="#" onClick={() => this.handleDlgShow()}>User Registration</a>
+                        <a href="#" onClick={() => this.handleDlgShow()}>Registrate aquí</a>
                     </div>
                 </div>
 
