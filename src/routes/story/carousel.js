@@ -10,29 +10,29 @@ class MyCarousel extends Component {
 
 render() {
   const programs = ['Traslado','Cambio de grupo','Inscripción de asignaturas','Cursar menos de la carga mínima','Cancelación de asignaturas','Reserva de cupo adicional','Cancelación periodo académico', 'Cambio tipologia','Reembolso'];
-  /* var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
+  /*var settings = {
+    dots: false,
+    infinite: false,    slidesToShow: 1,
     slidesToScroll: 1
-  }; */
+  };*/ 
   return (
-      <ReactCardCarousel autoplay={true} autoplay_speed={1400}>
+      <ReactCardCarousel autoplay={true} autoplay_speed={5000}>
         {programs.map(function (object, i) {
             return <Link to={{
               pathname: '/create',
               state: {object: object}
             }}>
             <a  class="card">
-            <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
+            <a href="https://imgur.com/mqbiUcx"><img src="https://i.imgur.com/mqbiUcxl.png" title="source: imgur.com"  class="card__image" alt="" />
+            <div class="card__overlay"></div>/></a>
+            
             <div class="card__overlay">
               <div class="card__header">
                 <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
-                <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
+                <img class="card__thumb" src="https://i.imgur.com/TUH0Oh6s.jpg" alt="" />
                 <div class="card__header-text">
                   <h3 class="card__title">{object}</h3>            
-                  <span class="card__status">1 hour ago</span>
+                  
                 </div>
               </div>
               <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
