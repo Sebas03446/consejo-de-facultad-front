@@ -110,7 +110,7 @@ class Search extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <button className='btn btn-primary' onClick={this.searchStory}>
+                                <button className='btn btn-ter' onClick={this.searchStory}>
                                     Buscar
                                 </button>
                             </div>
