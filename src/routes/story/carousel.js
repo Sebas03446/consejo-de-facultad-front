@@ -22,9 +22,9 @@ render() {
               pathname: '/create',
               state: {object: object}
             }}>
-            <a  class="card">
+            <a  class="card"> </a>
             <a href="https://imgur.com/mqbiUcx"><img src="https://i.imgur.com/mqbiUcxl.png" title="source: imgur.com"  class="card__image" alt="" />
-            <div class="card__overlay"></div>/></a>
+            <div class="card__overlay"></div>
             
             <div class="card__overlay">
               <div class="card__header">
@@ -35,7 +35,7 @@ render() {
                   
                 </div>
               </div>
-              <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+              <p class="card__description">Escoge la solicitud que deseas realizar. </p>
             </div>
           </a>
           </Link>

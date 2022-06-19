@@ -143,12 +143,12 @@ class Login extends Component {
                 >
                     <form onSubmit={this.userRegistration}>
                         <Modal.Header closeButton>
-                            <Modal.Title id='ModalHeader'>User Registration</Modal.Title>
+                            <Modal.Title id='ModalHeader'>Registro de Nuevo Usuario</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <div className="form-horizontal" onSubmit={this.userRegistration}>
                                 <div className="form-group">
-                                    <label className="col-sm-3 control-label">Email </label>
+                                    <label className="col-sm-3 control-label-2">Email </label>
 
                                     <div className="col-sm-8">
                                         <input type="email" className="form-control" id="email" name="email"
@@ -161,12 +161,13 @@ class Login extends Component {
                                                        email: e.target.value
                                                    }
                                                })}
+                                               
                                                required="true"/>
                                     </div>
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="col-sm-3 control-label">Password</label>
+                                    <label className="col-sm-3 control-label-2">Contraseña</label>
 
                                     <div className="col-sm-8">
                                         <input type="password" className="form-control" id="password" name="password"
@@ -178,13 +179,13 @@ class Login extends Component {
                                                        password: e.target.value
                                                    }
                                                })}
-                                               placeholder="Password"
+                                               placeholder="Ingresa tu contraseña"
                                                required="true"/>
                                     </div>
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="col-sm-3 control-label">Name</label>
+                                    <label className="col-sm-3 control-label-2">Nombre</label>
 
                                     <div className="col-sm-8">
                                         {/* <select className="form-control" required="true"
@@ -208,15 +209,15 @@ class Login extends Component {
                                                        name: e.target.value
                                                    }
                                                })}
-                                               placeholder="name"
+                                               placeholder="Ingresa tu nombre"
                                                required="true"/>
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <label className="col-sm-3 control-label">Programa Académico</label>
+                                    <label className="col-sm-3 control-label-2">Programa Académico</label>
 
                                     <div className="col-sm-8">
-                                        <select className="form-control" required="true"
+                                        <select className="form-control-2" required="true"
                                                 value={registration.academic_degree}
                                                 onChange={(e) => this.setState({
                                                     registration: {
@@ -240,10 +241,10 @@ class Login extends Component {
                             </div>
                         </Modal.Body>
                         <Modal.Footer>
-                            <button className='btn btn-primary' type="button" onClick={() => this.handleDlgClose()}>
+                            <button className='btn btn-secondary' type="button" onClick={() => this.handleDlgClose()}>
                                 Cancel
                             </button>
-                            <button className='btn btn-primary' type="submit">
+                            <button className='btn btn-secondary' type="submit">
                                 Registration
                             </button>
                         </Modal.Footer>
