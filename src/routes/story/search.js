@@ -60,14 +60,14 @@ class Search extends Component {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="story-header">
-                                <h2><strong>Search</strong></h2>
+                                <h1><strong>Buscar solicitud</strong></h1>
                                 <div className="form-horizontal">
                                     <div className="form-group">
-                                        <label className="col-sm-2 control-label">Title </label>
+                                        <label className="col-sm-2 control-label">Nombre de solicitud </label>
 
                                         <div className="col-sm-9">
                                             <input type="text" className="form-control" id="title" name="title"
-                                                   placeholder="Title"
+                                                   placeholder="Ingresa el nombre de tu solicitud"
                                                    value={filterData.title}
                                                    onChange={(e) => this.setState({
                                                        filterData: {
@@ -79,7 +79,7 @@ class Search extends Component {
                                     </div>
 
                                     <div className="form-group">
-                                        <label className="col-sm-2 control-label">Body</label>
+                                        <label className="col-sm-2 control-label">Descripción</label>
                                         <div className="col-sm-9">
                                             <input className="form-control" id="body" name="body"
                                                    value={filterData.body}
@@ -89,13 +89,13 @@ class Search extends Component {
                                                            body: e.target.value
                                                        }
                                                    })}
-                                                   placeholder="Body">
+                                                   placeholder="Ingresa una breve descripción">
                                             </input>
                                         </div>
                                     </div>
 
                                     <div className="form-group">
-                                        <label className="col-sm-2 control-label">Author Name</label>
+                                        <label className="col-sm-2 control-label">Tu nombre</label>
 
                                         <div className="col-sm-9">
                                             <input type="text" className="form-control" id="author" name="author"
@@ -106,12 +106,12 @@ class Search extends Component {
                                                            author: e.target.value
                                                        }
                                                    })}
-                                                   placeholder="Author Name"/>
+                                                   placeholder=""/>
                                         </div>
                                     </div>
                                 </div>
-                                <button className='btn btn-primary' onClick={this.searchStory}>
-                                    Search
+                                <button className='btn btn-ter' onClick={this.searchStory}>
+                                    Buscar
                                 </button>
                             </div>
                         </div>
