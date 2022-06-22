@@ -1,3 +1,5 @@
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react";
 import {
   loginFn,
@@ -5,9 +7,6 @@ import {
   registerFnAdmin,
   revalidateToken,
 } from "../services/auth";
-import Cookies from "js-cookie";
-import axios from "axios";
-import { useRouter } from "next/router";
 
 interface ContextProps {
   isLoggedIn: boolean;
