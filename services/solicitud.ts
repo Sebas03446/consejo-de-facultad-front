@@ -21,12 +21,13 @@ export const deleteSolicitud = async (_id: string) => {
 export const crearSolicitud = async (
   name: string,
   justificacion: string,
+  observacion: string,
   usuario: string
 ) => {
   try {
     const resp = await axiosReq(
       `solicitudes/new_solicitud`,
-      { name, justificacion, usuario },
+      { name, justificacion, observacion, usuario },
       "POST"
     );
     return resp;

@@ -9,6 +9,7 @@ const Profile = () => {
   return (
     <LayoutComp title="Perfil">
       <div className="profileContainer">
+        <h1 style={{ fontSize: "2.4em" }}>Perfil</h1>
         <div className="row">
           <p className="bold">Nombre:</p>
           <p>{user.name}</p>

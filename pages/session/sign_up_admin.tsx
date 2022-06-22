@@ -4,47 +4,37 @@ import React, { useEffect, useState } from "react";
 import useAuth from "../../context/AuthContext";
 
 const SignUp = () => {
-  const { signUp } = useAuth();
+  const { signUpAdmin, user } = useAuth();
 
   const router = useRouter();
 
-  const [degrees, setDegrees] = useState([
-    "Ing. Sistemas y Computación",
-    "Ing. Agrícola",
-    "Ing. Electrónica",
-    "Ing. Mecatrónica",
-    "Ing. Civil",
-    "Ing. Industrial",
-    "Ing. Química",
-    "Ing. Eléctrica",
-    "Ing. Mecánica",
-  ]);
-
   const handleFinish = async ({
     name,
-    academic_degree,
     email,
     password,
   }: {
     name: string;
-    academic_degree: string;
     email: string;
     password: string;
   }) => {
-    const isValidRegister = await signUp(
-      email,
-      password,
-      name,
-      academic_degree
-    );
+    const isValidRegister = await signUpAdmin(email, password, name);
     if (!isValidRegister) {
       Modal.error({
         content: "Ha ocurrido un error, por favor contacte a un administrador",
       });
     } else {
-      router.replace("/");
+      Modal.success({
+        content: "Ha creado un administrador satisfactoriamente",
+        onOk: () => router.push("/"),
+      });
     }
   };
+
+  useEffect(() => {
+    if (user?.privilege === "student") {
+      router.replace("/");
+    }
+  }, [user]);
 
   return (
     <div className="loginContainer">
@@ -87,24 +77,6 @@ const SignUp = () => {
             ]}
           >
             <Input.Password placeholder="Contraseña" />
-          </Form.Item>
-          <p>Pregrado:</p>
-          <Form.Item
-            name="academic_degree"
-            rules={[
-              {
-                required: true,
-                message: "Por favor selecciona un programa académico",
-              },
-            ]}
-          >
-            <Select style={{ width: "100%" }}>
-              {degrees.map((degree: any) => (
-                <Select.Option key={degree} value={degree}>
-                  {degree}
-                </Select.Option>
-              ))}
-            </Select>
           </Form.Item>
           <Form.Item>
             <Button htmlType="submit">Aceptar</Button>

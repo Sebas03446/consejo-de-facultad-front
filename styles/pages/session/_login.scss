@@ -5,8 +5,18 @@
   justify-content: center;
   margin: auto;
   height: 100vh;
-  .formContainer {
-    margin-top: 25px;
-    width: 20%;
+  // .formContainer {
+  //   margin-top: 25px;
+  //   width: 20%;
+  // }
+
+  .container {
+    padding: 30px;
+    border: 1px solid #cdcdcd;
+    border-radius: 20px;
+    width: 28%;
+    h2 {
+      text-align: center;
+    }
   }
 }

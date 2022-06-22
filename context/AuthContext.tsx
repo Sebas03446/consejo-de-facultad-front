@@ -1,5 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { loginFn, registerFn, revalidateToken } from "../services/auth";
+import {
+  loginFn,
+  registerFn,
+  registerFnAdmin,
+  revalidateToken,
+} from "../services/auth";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -13,6 +18,11 @@ interface ContextProps {
     password: string,
     name: string,
     academic_degree: string
+  ) => Promise<boolean>;
+  signUpAdmin: (
+    email: string,
+    password: string,
+    name: string
   ) => Promise<boolean>;
   logOut: () => void;
 }
@@ -57,6 +67,19 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     }
   };
 
+  const signUpAdmin = async (
+    email: string,
+    password: string,
+    name: string
+  ): Promise<boolean> => {
+    await registerFnAdmin(email, password, name);
+    try {
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
+
   const logOut = () => {
     Cookies.remove("token");
     setIsLoggedIn(false);
@@ -79,7 +102,12 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
       }
     } catch (error) {
       Cookies.remove("token");
-      router.replace("/session/login");
+      if (
+        router.asPath !== "/session/login" &&
+        router.asPath !== "/session/sign_up"
+      ) {
+        router.push("/session/login");
+      }
     }
   };
 
@@ -89,7 +117,9 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, login, signUp, logOut }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn, user, login, signUp, logOut, signUpAdmin }}
+    >
       {children}
     </AuthContext.Provider>
   );

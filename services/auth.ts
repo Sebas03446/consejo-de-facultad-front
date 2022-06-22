@@ -27,6 +27,23 @@ export const registerFn = async (
   }
 };
 
+export const registerFnAdmin = async (
+  email: string,
+  password: string,
+  name: string
+) => {
+  try {
+    const resp = await axiosReq(
+      "auth/new_admin",
+      { email, password, name },
+      "POST"
+    );
+    return resp;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const revalidateToken = async () => {
   try {
     const resp = await axiosReq("auth/renew");

@@ -22,6 +22,7 @@ const Solicitudes = () => {
   const { user } = useAuth();
   const [solicitudes, setSolicitudes] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const formRef = useRef<FormInstance>(null);
 
@@ -35,6 +36,11 @@ const Solicitudes = () => {
       title: "Justificación",
       dataIndex: "justificacion",
       key: "justificacion",
+    },
+    {
+      title: "Observación",
+      dataIndex: "observacion",
+      key: "observacion",
     },
     {
       title: "Estado",
@@ -57,8 +63,10 @@ const Solicitudes = () => {
   ];
 
   const getData = async () => {
+    setIsLoading(true);
     const resp = await listSolicitudesById(user?._id as string);
     setSolicitudes(resp);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -70,9 +78,15 @@ const Solicitudes = () => {
   };
 
   const handleOk = async () => {
-    //@ts-ignore
-    const { name, justificacion } = await formRef.current.validateFields();
-    const resp = await crearSolicitud(name, justificacion, user._id);
+    const { name, justificacion, observacion } =
+      //@ts-ignore
+      await formRef.current.validateFields();
+    const resp = await crearSolicitud(
+      name,
+      justificacion,
+      observacion,
+      user._id
+    );
     if (resp.ok) {
       setIsVisible(false);
       await getData();
@@ -83,10 +97,15 @@ const Solicitudes = () => {
   return (
     <LayoutComp title="Solicitudes">
       <>
-        <Modal visible={isVisible} onCancel={handleCancel} onOk={handleOk}>
+        <Modal
+          visible={isVisible}
+          onCancel={handleCancel}
+          onOk={handleOk}
+          centered
+        >
           <h2>Crear solicitud</h2>
           <Form ref={formRef}>
-            <p>Tipo de solicitud:</p>
+            <p>Tipo de solicitud: *</p>
             <Form.Item
               name={"name"}
               rules={[
@@ -97,10 +116,72 @@ const Solicitudes = () => {
               ]}
             >
               <Select allowClear>
-                <Select.Option value="1">1</Select.Option>
+                <Select.Option value="Inscripción de asignaturas">
+                  Inscripción de asignaturas
+                </Select.Option>
+                <Select.Option value="Registro trabajo de grado">
+                  Registro trabajo de grado
+                </Select.Option>
+                <Select.Option value="Cancelación de periodo académico">
+                  Cancelación de periodo académico
+                </Select.Option>
+                <Select.Option value="Retiro definitivo del programa">
+                  Retiro definitivo del programa
+                </Select.Option>
+                <Select.Option value="Inscripción de la Práctica Académica Especial - PAE">
+                  Inscripción de la Práctica Académica Especial - PAE
+                </Select.Option>
+                <Select.Option value="Inscripción Práctica estudiantil">
+                  Inscripción Práctica estudiantil
+                </Select.Option>
+                <Select.Option value="Máximo número de créditos en Inscripción">
+                  Máximo número de créditos en Inscripción
+                </Select.Option>
+                <Select.Option value="Cursar menos de la carga mínima">
+                  Cursar menos de la carga mínima
+                </Select.Option>
+                <Select.Option value="Cancelación de asignaturas">
+                  Cancelación de asignaturas
+                </Select.Option>
+                <Select.Option value="Reserva de cupo adicional">
+                  Reserva de cupo adicional
+                </Select.Option>
+                <Select.Option value="Homologación/Convalidación/Equivalencia">
+                  Homologación/Convalidación/Equivalencia
+                </Select.Option>
+                <Select.Option value="Traslado">Traslado</Select.Option>
+                <Select.Option value="Reingreso">Reingreso</Select.Option>
+                <Select.Option value="Cambio de grupo">
+                  Cambio de grupo
+                </Select.Option>
+                <Select.Option value="Cambio de tipología">
+                  Cambio de tipología
+                </Select.Option>
+                <Select.Option value="Traslado créditos excedentes BAPI">
+                  Traslado créditos excedentes BAPI
+                </Select.Option>
+                <Select.Option value="Doble titulación">
+                  Doble titulación
+                </Select.Option>
+                <Select.Option value="Estímulos">Estímulos</Select.Option>
+                <Select.Option value="Recurso de reposición">
+                  Recurso de reposición
+                </Select.Option>
+                <Select.Option value="Recurso de reposición en subsidio apelación">
+                  Recurso de reposición en subsidio apelación
+                </Select.Option>
+                <Select.Option value="Movilidad Saliente">
+                  Movilidad Saliente
+                </Select.Option>
+                <Select.Option value="Movilidad Entrante - Doble Titulación">
+                  Movilidad Entrante - Doble Titulación
+                </Select.Option>
+                <Select.Option value="Desistir de la movilidad">
+                  Desistir de la movilidad
+                </Select.Option>
               </Select>
             </Form.Item>
-            <p>Justificación: </p>
+            <p>Justificación: *</p>
             <Form.Item
               name={"justificacion"}
               rules={[
@@ -112,12 +193,22 @@ const Solicitudes = () => {
             >
               <TextArea rows={4} />
             </Form.Item>
+            <p>Observaciones: </p>
+            <Form.Item name={"observacion"}>
+              <TextArea rows={4} />
+            </Form.Item>
           </Form>
+          <p>
+            <i>
+              Nota: Al hacer click en enviar manifiesta que la información
+              registrada en este formulario es veraz.
+            </i>
+          </p>
         </Modal>
         <div className="flex" style={{ justifyContent: "space-evenly" }}>
           <h2 style={{ fontSize: "2em" }}>Mis solicitudes</h2>
         </div>
-        <Table columns={columns} dataSource={solicitudes} />
+        <Table columns={columns} dataSource={solicitudes} loading={isLoading} />
         <Button
           type="primary"
           style={{ marginTop: "10px" }}

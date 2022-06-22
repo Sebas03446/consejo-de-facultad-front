@@ -1,0 +1,15 @@
+.charts {
+  display: flex;
+  width: 80%;
+  margin: auto;
+
+  .charts--element {
+    padding: 10px;
+    width: 50%;
+    height: 100%;
+
+    .row {
+      margin: 20px 0;
+    }
+  }
+}
